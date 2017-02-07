@@ -6,7 +6,7 @@ Creation-Date: 2017-02-03T13:34:36+01:00
 Created vendredi 03 février 2017
 
 ===== Matériel =====
-{{{code: lang="dosbatch" linenumbers="False"
+{{{code: lang="dosbatch" linenumbers="True"
 user@kali:~$ lsusb
 Bus 001 Device 006: ID 046d:c52b Logitech, Inc. Unifying Receiver
 }}}
