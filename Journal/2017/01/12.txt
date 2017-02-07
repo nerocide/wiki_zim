@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-01-12T13:23:17+01:00
+
+====== jeudi 12 janv. 2017 ======
+
+===== Rapport de la journée =====
+height = 20 width = 
+And define a formula: area = height x width
+area = 
+
+===== Temps de travail =====
+|                  | Heure |
+|:-----------------|:------|
+| Arrivée          | 9h25  |
+| Retour Pause     | 13h21 |
+| Pause midi       | 13h03 |
+| Départ           |       |
+| Temps de travail |       |
+

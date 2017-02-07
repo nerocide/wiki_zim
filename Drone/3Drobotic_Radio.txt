@@ -1,0 +1,76 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-02-02T16:16:24+01:00
+
+====== 3Drobotic Radio ======
+Created jeudi 02 février 2017
+
+===== Lien utile =====
+http://ardupilot.org/copter/docs/common-3dr-radio-advanced-configuration-and-technical-information.html
+
+===== Récap des erreurs rencontrées =====
+$ lsusb
+Bus 001 Device 016: ID 10c4:ea60 Cygnal Integrated Products, Inc. CP210x UART Bridge / myAVR mySmartUSB light
+
+$ sudo dmesg 
+[25339.178358] usb 1-3: USB disconnect, device number 16
+[25339.178793] cp210x ttyUSB0: cp210x converter now disconnected from ttyUSB0
+[25339.178842] cp210x 1-3:1.0: device disconnected
+[25342.014496] usb 1-3: new full-speed USB device number 17 using xhci_hcd
+[25342.156518] usb 1-3: New USB device found, idVendor=10c4, idProduct=ea60
+[25342.156520] usb 1-3: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[25342.156522] usb 1-3: Product: CP2102 USB to UART Bridge Controller
+[25342.156524] usb 1-3: Manufacturer: Silicon Labs
+[25342.156525] usb 1-3: SerialNumber: 0001
+[25342.157953] cp210x 1-3:1.0: cp210x converter detected
+[25342.158485] usb 1-3: cp210x converter now attached to ttyUSB0
+
+$ lsmod | grep cp210
+cp210x                 28672  0
+usbserial              49152  1 cp210x
+usbcore               249856  9 cp210x,uvcvideo,usbhid,usb_storage,usbserial,xhci_pci,btusb,uas,xhci_hcd
+
+$ ll /dev/bus/usb/001/016 
+crw-rw-r-- 1 root root 189, 15 févr.  2 16:14 [[/dev/bus/usb/001/016]]
+
+$ ll /dev/ttyUSB0 
+crw-rw---- 1 root dialout 188, 0 févr.  2 16:17 /dev/ttyUSB0
+
+$ id
+uid=1000(jmcollongette) gid=1000(jmcollongette) groupes=1000(jmcollongette),20(dialout),46(plugdev)
+
+$tail -f < /dev/ttyUSB0
+
+$ Modemmanader est désinstallé
+
+Voici l'erreur qgroundcontrol
+Error on link /dev/ttyUSB0. Error connecting: Could not create port. Permission error while locking the device
+
+
+Upgrade
+
+QGroundControl can upgrade the firmware on Pixhawk devices, SiK Radios and PX4 Flow Smart Cameras.
+All QGroundControl connections to vehicles must be disconnected prior to firmware upgrade.
+Please unplug your Pixhawk and/or Radio from USB.
+Plug in your device via USB to start firmware upgrade.
+Found device: SiK Radio
+Putting radio into command mode
+Rebooting radio to bootloader
+Connected to bootloader:
+Version: 0
+Board ID: 78
+Flash size: 0
+Downloading firmware...
+From: http://firmware.ardupilot.org/SiK/stable/radio~hm_trp.ihx
+Download complete
+Erasing previous program...
+Erase complete
+Programming new version...
+Program complete
+Verifying program...
+Verify complete
+Upgrade complete
+------------------------------------------
+
+{{./pasted_image.png}}
+

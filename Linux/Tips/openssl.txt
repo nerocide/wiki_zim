@@ -1,0 +1,51 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-03-17T15:38:47+01:00
+
+====== openssl ======
+# extraction des dates du certificat, début et fin de validité
+QE3 [root@frsaruxv62 pem]# openssl x509  -noout -dates -in  email-ca-bundle.pem 
+notBefore=May  5 09:37:37 2011 GMT
+notAfter=Dec 31 09:37:37 2030 GMT
+
+# extraction date du certificat fin de validité
+QE3 [root@frsaruxv62 pem]# openssl x509  -noout -enddate -in  email-ca-bundle.pem 
+notAfter=Dec 31 09:37:37 2030 GMT
+
+
+
+# vérification de la
+
+
+locate pem | grep -e ".pem$"
+
+
+# get Certificate location
+for i in `locate pem | grep -e ".pem$"`
+do
+	# check expiration dates
+	echo "$i"
+	ENDDATE=`openssl x509  -noout -enddate -in $i > /dev/null`
+	RETVAL=$?
+	
+	if [ RETVAL -eq 0 ]
+	then
+		echo $ENDDATE
+	else
+		echo "unable to check certificate"
+	fi
+done
+
+
+# retourne 1 si ko
+QE3 [root@frsaruxv62 pem]# openssl x509  -noout -enddate -in /usr/share/doc/m2crypto-0.21.1/demo/smime.howto/signer_key.pem; echo $?
+unable to load certificate
+139669483526048:error:0906D06C:PEM routines:PEM_read_bio:no start line:pem_lib.c:703:Expecting: TRUSTED CERTIFICATE
+1
+
+# retourne 0 si ok 
+QE3 [root@frsaruxv62 pem]# openssl x509  -noout -enddate -in /usr/share/doc/m2crypto-0.21.1/demo/x509/server-expired.pem; echo $?
+notAfter=Sep 10 09:51:30 2002 GMT
+0
+
+

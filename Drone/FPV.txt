@@ -1,0 +1,30 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-02-03T13:34:36+01:00
+
+====== FPV ======
+Created vendredi 03 février 2017
+
+===== Matériel =====
+{{{code: lang="dosbatch" linenumbers="False"
+user@kali:~$ lsusb
+Bus 001 Device 006: ID 046d:c52b Logitech, Inc. Unifying Receiver
+}}}
+
+
+===== Envoi de  /dev/video0 en UDP =====
+{{{code: lang="dosbatch" linenumbers="False"
+gst-launch-1.0 v4l2src device=/dev/video0 ! 'video/x-raw' ! x264enc pass=qual quantizer=20 tune=zerolatency ! rtph264pay ! udpsink host=127.0.0.1 port=5600
+}}}
+
+
+Ajout de paquet sur Navio OS
+
+{{{code: lang="dosbatch" linenumbers="False"
+apt-get install gstreamer1.0-plugins-ugly
+apt-get install gstreamer1.0-libav gstreamer1.0-alsa gstreamer1.0-tools libgstreamer1.0-0 libgstreamer-plugins-bad1.0-0
+}}}
+
+
+===== Ressources =====
+http://blog.nicolargo.com/2009/02/jai-streame-avec-gstreamer.html

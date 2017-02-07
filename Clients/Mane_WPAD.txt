@@ -1,0 +1,42 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-01-16T11:39:13+01:00
+
+====== Mane WPAD ======
+Created lundi 16 janvier 2017
+
+
+# création du répertoire de stockage du proxy.pac/wpad.dat
+[root@frbsluxv35 conf.d]# mkdir [[/var/www/wpad]]
+# création de la configuration apache
+[root@frbsluxv35 conf.d]# cat /etc/httpd/conf.d/wpad.conf 
+# NameVirtualHost *:80
+<VirtualHost *:80>
+   DocumentRoot /var/www/wpad
+   ServerName wpad.extranet.emea.sesam.mane.com
+   ServerAlias wpad
+
+   <Directory /var/www/wpad >
+	  Order allow,deny
+	  Allow from all
+   </Directory>
+</VirtualHost>
+
+# ajouter du CNAME suivant dans DNS 192.168.2.2 (Zone extranet)
+[root@frbsluxv35 conf.d]# wpad.extranet.sesam.mane.com   192.168.2.25
+# désactiver ACL sur le DNS avec la commande (https://technet.microsoft.com/fr-fr/library/cc995158.aspx) 
+dnscmd /config /enableglobalqueryblocklist 0
+
+# ajout de l'entrée sur la machine apache/squid car sa résolution pointe sur des DNS pulic
+[root@frbsluxv35 conf.d]# echo "192.168.2.25	wpad.extranet.sesam.mane.com	wpad" >> [[/etc/hosts]]
+
+# redémarrer le service apache
+[root@frbsluxv35 service httpd restart
+
+# Ajout des régles de firewall
+# Allow incoming HTTP PROXY on interface eth0 - DMZ2
+-A INPUT   -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A OUTPUT  -o eth0 -p tcp --sport 80 -m state --state ESTABLISHED     -j ACCEPT
+
+#Appliquer les nouvelles régles
+[root@frbsluxv35 conf.d]# service iptables reload

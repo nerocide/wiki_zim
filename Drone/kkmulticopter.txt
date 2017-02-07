@@ -1,0 +1,29 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-07T09:58:20+02:00
+
+====== kkmulticopter ======
+Created mercredi 07 septembre 2016
+
+====== Version ======
+KKmulticopter 5.5 blueboard
+
+===== Reprogrammation de la puce Atmel =====
+
+==== Méthode 1 - kkmulticoper FlashTool ====
+Permet de mettre à jour la board directement.
+Téléachargeable (Java) à http://lazyzero.de/en/modellbau/kkmulticopterflashtool
+
+Voici les options à choisir:
+{{./pasted_image001.png}}
+En cas de problème voir le fix [[Programmateur ISP (USBasp)]]
+
+
+==== Méthode 2 - Arduino UI ====
+Télécharger le croquis adapté au modèle/format de drone et l'ouvrir dans l'Arduino UI.
+Connecter le programmateur série (usbasp)
+Charger le programme à compiler
+Compiler et déverser sur le chip distant
+
+@drone
+@kkmulticopter

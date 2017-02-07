@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-08-23T14:35:50+02:00
+
+====== NFS problem SKG ======
+Created mardi 23 août 2016
+_________________
+cat nfs_list_errors.sh
+-----------------------
+#!/bin/bash
+i=1
+grep "peername failed" /var/log/messages* | sort -u | cut -d ":" -f "2-30" | while read -r line
+do
+		echo "---------------Error n°$i-------------------"
+		echo $line
+		#echo "-----------------------------------"
+		error_day=`echo $line |awk '{print $1" "$2}'`
+		#error_day2=`echo $line |awk '{print $1" "$2 $3}'`
+		#echo $error_day2
+		epoch_start=`date -d "${error_day}" +%s`
+		#echo $epoch_start
+		epoch_end=`date -d "${error_day} + 1 day" +%s`
+		echo "Watch the error on the monitoring:"
+		echo "http://fr-eme1-u044.skg.clients:8080/dashboard/db/skg_maindashboard?from=${epoch_start}000&to=${epoch_end}000&var-hostname=fr-eme1-u002&var-Disk1=Swap_space&var-Disk2=Swap_space&var-Device=dm-1"
+		#echo "---------------end of $i-------------------"
+i=$(($i+1))
+done
