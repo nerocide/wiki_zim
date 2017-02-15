@@ -1,0 +1,75 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-02-08T00:38:25+01:00
+
+====== Action Cam andoer ======
+Created mercredi 08 février 2017
+
+$ lsusb
+Bus 001 Device 006: ID 1f3a:1002 Onda (unverified)
+
+===== Branchement en USB =====
+Feb  8 00:36:41 kali kernel: [15285.981304] usb 1-1: new high-speed USB device number 7 using xhci_hcd
+Feb  8 00:36:41 kali kernel: [15286.122464] usb 1-1: New USB device found, idVendor=1f3a, idProduct=1002
+Feb  8 00:36:41 kali kernel: [15286.122471] usb 1-1: New USB device strings: Mfr=2, Product=3, SerialNumber=4
+Feb  8 00:36:41 kali kernel: [15286.122475] usb 1-1: Product: Android
+Feb  8 00:36:41 kali kernel: [15286.122479] usb 1-1: Manufacturer: USB Developer
+Feb  8 00:36:41 kali kernel: [15286.122482] usb 1-1: SerialNumber: 20080411
+Feb  8 00:36:41 kali kernel: [15286.123744] usb-storage 1-1:1.0: USB Mass Storage device detected
+Feb  8 00:36:41 kali kernel: [15286.124067] scsi host3: usb-storage 1-1:1.0
+Feb  8 00:36:41 kali mtp-probe: checking bus 1, device 7: "/sys/devices/pci0000:00/0000:00:14.0/usb1/1-1"
+Feb  8 00:36:41 kali mtp-probe: bus: 1, device: 7 was not an MTP device
+Feb  8 00:36:42 kali kernel: [15287.163306] scsi 3:0:0:0: Direct-Access     USB 2.0  USB Flash Driver 0100 PQ: 0 ANSI: 2
+Feb  8 00:36:42 kali kernel: [15287.164642] sd 3:0:0:0: Attached scsi generic sg1 type 0
+Feb  8 00:36:42 kali kernel: [15287.175763] sd 3:0:0:0: [sdb] Attached SCSI removable disk
+
+
+===== Activation de camera pc =====
+Feb  8 00:36:51 kali kernel: [15295.725771] usb 1-1: USB disconnect, device number 7
+Feb  8 00:36:51 kali kernel: [15296.065211] usb 1-1: new high-speed USB device number 8 using xhci_hcd
+Feb  8 00:36:51 kali kernel: [15296.206352] usb 1-1: New USB device found, idVendor=1f3a, idProduct=100e
+Feb  8 00:36:51 kali kernel: [15296.206360] usb 1-1: New USB device strings: Mfr=2, Product=3, SerialNumber=4
+Feb  8 00:36:51 kali kernel: [15296.206364] usb 1-1: Product: Android
+Feb  8 00:36:51 kali kernel: [15296.206368] usb 1-1: Manufacturer: USB Developer
+Feb  8 00:36:51 kali kernel: [15296.206371] usb 1-1: SerialNumber: 20080411
+Feb  8 00:36:51 kali kernel: [15296.207394] uvcvideo: Found UVC 1.00 device Android (1f3a:100e)
+Feb  8 00:36:51 kali kernel: [15296.208712] uvcvideo 1-1:1.0: Entity type for entity Processing 2 was not initialized!
+Feb  8 00:36:51 kali kernel: [15296.208725] uvcvideo 1-1:1.0: Entity type for entity Camera 1 was not initialized!
+Feb  8 00:36:51 kali kernel: [15296.209364] input: Android as /devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1:1.0/input/input21
+Feb  8 00:36:51 kali mtp-probe: checking bus 1, device 8: "/sys/devices/pci0000:00/0000:00:14.0/usb1/1-1"
+Feb  8 00:36:51 kali mtp-probe: bus: 1, device: 8 was not an MTP device
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) config/udev: Adding input device Android (/dev/input/event20)
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (**) Android: Applying InputClass "libinput keyboard catchall"
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) Using input driver 'libinput' for 'Android'
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) systemd-logind: got fd for /dev/input/event20 13:84 fd 50 paused 0
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (**) Android: always reports core events
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (**) Option "Device" "/dev/input/event20"
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (**) Option "_source" "server/udev"
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) input device 'Android', /dev/input/event20 is tagged by udev as: Keyboard
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) input device 'Android', /dev/input/event20 is a keyboard
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1:1.0/input/input21/event20"
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) XINPUT: Adding extended input device "Android" (type: KEYBOARD, id 17)
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (**) Option "xkb_model" "pc105"
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (**) Option "xkb_layout" "fr"
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (**) Option "xkb_variant" "latin9"
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (WW) Option "xkb_options" requires a string value
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) input device 'Android', /dev/input/event20 is tagged by udev as: Keyboard
+Feb  8 00:36:51 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) input device 'Android', /dev/input/event20 is a keyboard
+Feb  8 00:36:54 kali kernel: [15298.997287] usb 1-1: USB disconnect, device number 8
+Feb  8 00:36:54 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) config/udev: removing device Android
+Feb  8 00:36:54 kali /usr/lib/gdm3/gdm-x-session[1028]: (**) Option "fd" "50"
+Feb  8 00:36:54 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) UnloadModule: "libinput"
+Feb  8 00:36:54 kali /usr/lib/gdm3/gdm-x-session[1028]: (II) systemd-logind: releasing fd for 13:84
+Feb  8 00:36:55 kali kernel: [15299.961237] usb 1-1: new high-speed USB device number 10 using xhci_hcd
+Feb  8 00:36:55 kali kernel: [15300.102117] usb 1-1: New USB device found, idVendor=1f3a, idProduct=1002
+Feb  8 00:36:55 kali kernel: [15300.102124] usb 1-1: New USB device strings: Mfr=2, Product=3, SerialNumber=4
+Feb  8 00:36:55 kali kernel: [15300.102129] usb 1-1: Product: Android
+Feb  8 00:36:55 kali kernel: [15300.102133] usb 1-1: Manufacturer: USB Developer
+Feb  8 00:36:55 kali kernel: [15300.102137] usb 1-1: SerialNumber: 20080411
+Feb  8 00:36:55 kali kernel: [15300.103273] usb-storage 1-1:1.0: USB Mass Storage device detected
+Feb  8 00:36:55 kali kernel: [15300.104077] scsi host3: usb-storage 1-1:1.0
+Feb  8 00:36:55 kali mtp-probe: checking bus 1, device 10: "/sys/devices/pci0000:00/0000:00:14.0/usb1/1-1"
+Feb  8 00:36:55 kali mtp-probe: bus: 1, device: 10 was not an MTP device
+Feb  8 00:36:56 kali kernel: [15301.134211] scsi 3:0:0:0: Direct-Access     USB 2.0  USB Flash Driver 0100 PQ: 0 ANSI: 2
+Feb  8 00:36:56 kali kernel: [15301.135765] sd 3:0:0:0: Attached scsi generic sg1 type 0
+Feb  8 00:36:56 kali kernel: [15301.136709] sd 3:0:0:0: [sdb] Attached SCSI removable disk
