@@ -2,13 +2,17 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2017-02-08T00:38:25+01:00
 
-====== Action Cam andoer ======
+====== Action Cam (Andoer) ======
 Created mercredi 08 février 2017
-
+{{{code: lang="sh" linenumbers="False"
 $ lsusb
 Bus 001 Device 006: ID 1f3a:1002 Onda (unverified)
+}}}
+
+
 
 ===== Branchement en USB =====
+{{{code: lang="sh" linenumbers="False"
 Feb  8 00:36:41 kali kernel: [15285.981304] usb 1-1: new high-speed USB device number 7 using xhci_hcd
 Feb  8 00:36:41 kali kernel: [15286.122464] usb 1-1: New USB device found, idVendor=1f3a, idProduct=1002
 Feb  8 00:36:41 kali kernel: [15286.122471] usb 1-1: New USB device strings: Mfr=2, Product=3, SerialNumber=4
@@ -22,9 +26,12 @@ Feb  8 00:36:41 kali mtp-probe: bus: 1, device: 7 was not an MTP device
 Feb  8 00:36:42 kali kernel: [15287.163306] scsi 3:0:0:0: Direct-Access     USB 2.0  USB Flash Driver 0100 PQ: 0 ANSI: 2
 Feb  8 00:36:42 kali kernel: [15287.164642] sd 3:0:0:0: Attached scsi generic sg1 type 0
 Feb  8 00:36:42 kali kernel: [15287.175763] sd 3:0:0:0: [sdb] Attached SCSI removable disk
+}}}
+
 
 
 ===== Activation de camera pc =====
+{{{code: lang="sh" linenumbers="False"
 Feb  8 00:36:51 kali kernel: [15295.725771] usb 1-1: USB disconnect, device number 7
 Feb  8 00:36:51 kali kernel: [15296.065211] usb 1-1: new high-speed USB device number 8 using xhci_hcd
 Feb  8 00:36:51 kali kernel: [15296.206352] usb 1-1: New USB device found, idVendor=1f3a, idProduct=100e
@@ -73,3 +80,5 @@ Feb  8 00:36:55 kali mtp-probe: bus: 1, device: 10 was not an MTP device
 Feb  8 00:36:56 kali kernel: [15301.134211] scsi 3:0:0:0: Direct-Access     USB 2.0  USB Flash Driver 0100 PQ: 0 ANSI: 2
 Feb  8 00:36:56 kali kernel: [15301.135765] sd 3:0:0:0: Attached scsi generic sg1 type 0
 Feb  8 00:36:56 kali kernel: [15301.136709] sd 3:0:0:0: [sdb] Attached SCSI removable disk
+}}}
+
