@@ -1,0 +1,36 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-02-24T14:41:33+01:00
+
+====== Backup OraArch ======
+Created vendredi 24 février 2017
+
+===== Présentation =====
+Mise en place d'un mécanisme de sauvegarde des archives logs (fichiers) oracle sur les systèmes unix.
+
+==== Convention ====
+Stockage des archives logs dans [[/oracle/SID/oraarch]]
+SID représente le nom SAP, exemple SPS, SXS, SOD....
+
+==== Fonctionnement Détaillé ====
+Un script (**oraarch_control_v2.sh)** en crontab scrute le taux d'utilisation du filesystem dans [[/oracle/SID/oraarch]]
+Si le taux dépasse le seuil paramétré, le script déclenche un ordre de backup directement à destination du serveur de backup (fr-eme1-
+
+
+==== Ressources nécessaires ====
+* Script de sauvegarde **"fr-eme1-u030:/app/scripts/sap/oraarch_control_v2.sh" (source)**
+* [[DataProtector]]
+	* 1 serveur de sauvegarde
+	* 1 client connecté
+	* 1 police de sauvegarde sans schedule
+		* pour le client sauvegardé
+			* 1 pre script
+			* 1 post script
+
+
+
+===== Mise en place sur fr-eme1-u024 =====
+Déploiement script
+Paramétrage Crontab
+DataProtector
+
