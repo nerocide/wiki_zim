@@ -24,8 +24,8 @@ Si le taux dépasse le seuil paramétré, le script déclenche un ordre de backu
 	* 1 client connecté
 	* 1 police de sauvegarde sans schedule
 		* pour le client sauvegardé
-			* 1 pre script
-			* 1 post script
+			* 1 pre script (ex: /exploit/oraarch_control_v2.sh -q -S SXS)
+			* 1 post script (ex: /exploit/oraarch_control_v2.sh -d -S SXS)
 
 
 
