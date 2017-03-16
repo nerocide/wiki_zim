@@ -14,8 +14,9 @@ SID représente le nom SAP, exemple SPS, SXS, SOD....
 
 ==== Fonctionnement Détaillé ====
 Un script (**oraarch_control_v2.sh)** en crontab scrute le taux d'utilisation du filesystem dans [[/oracle/SID/oraarch]]
-Si le taux dépasse le seuil paramétré, le script déclenche un ordre de backup directement à destination du serveur de backup (fr-eme1-
-
+Si le taux dépasse le seuil paramétré, le script déclenche un ordre de backup directement à destination du serveur de backup (fr-eme1-m002).
+La police de sauvegarde est paramétrée de la sorte qu'un pre-script (déplacement des archivelogs) et post-script se lance (suppresion des archivelogs) soit exécuté.
+La police doit sauvegarder [[/oracle/SID/oraarch/mv_during_backup]]
 
 ==== Ressources nécessaires ====
 * Script de sauvegarde **"fr-eme1-u030:/app/scripts/sap/oraarch_control_v2.sh" (source)**
@@ -24,13 +25,121 @@ Si le taux dépasse le seuil paramétré, le script déclenche un ordre de backu
 	* 1 client connecté
 	* 1 police de sauvegarde sans schedule
 		* pour le client sauvegardé
-			* 1 pre script (ex: /exploit/oraarch_control_v2.sh -q -S SXS)
-			* 1 post script (ex: /exploit/oraarch_control_v2.sh -d -S SXS)
-
-
+			* 1 pre script pour déplacement les fichiers à sauvegarder dans un répertoire temporaire "mv_during_backup" (ex: /exploit/oraarch_control_v2.sh -q -S SXS)
+			* 1 post script pour supprimer les fichiers sauvegardés (ex: /exploit/oraarch_control_v2.sh -d -S SXS)
 
 ===== Mise en place sur fr-eme1-u024 =====
-Déploiement script
-Paramétrage Crontab
-DataProtector
+Suivre les étapes suivantes
+
+==== Déploiement script ====
+installer le script se trouvant dans **fr-eme1-u030:/exploit/sap/oraarch_control_v2.sh** dans **fr-eme1-u024:/exploit/**
+
+==== Paramétrage Crontab ====
+**lancement toutes les heures**
+01 * * * * /exploit/oraarch_control_v2.sh  -p Test_JMC -S SXS
+
+==== Police DataProtector ====
+
+{{./pasted_image.png}}
+
+{{./pasted_image001.png}}
+
+{{./pasted_image002.png}}
+
+==== Test de fonctionnement ====
+On ajout le -m 1 afin de modifier le seuil (1%) de déclenchement du backup
+{{{code: lang="sh" linenumbers="False"
+SXS [root@fr-eme1-u024 exploit]# ./oraarch_control_v2.sh  -p Test_JMC -S SXS -m 1
+[2017-03-07 17:01:22 pid(9939) ] INFO: ------------ Debut de script -----------------
+[2017-03-07 17:01:22 pid(9939) ] INFO: Aucun backup en cours, processus omnib non présent
+[2017-03-07 17:01:22 pid(9939) ] INFO: Lancement de la police de backup
+[Normal] From: BSM@fr-eme1-m002 "Test_JMC"  Time: 3/7/2017 5:01:28 PM
+	Backup session 2017/03/07-120 started.
+
+[Warning] From: BSM@fr-eme1-m002 "Test_JMC"  Time: 3/7/2017 5:02:01 PM
+[61:2013]  	Some of the backup devices are occupied. Session is waiting
+	for all the devices to get free.
+
+[Normal] From: BSM@fr-eme1-m002 "Test_JMC"  Time: 3/7/2017 5:06:05 PM
+	Starting rescan of library "MSL8096_SALLE1" with drive "DRV1_MSL8096_SALLE1".
+
+[Normal] From: UMA@fr-eme1-m002 "MSL8096_SALLE1"  Time: 3/7/2017 5:06:08 PM
+	STARTING Media Agent "MSL8096_SALLE1"
+
+[Normal] From: UMA@fr-eme1-m002 "MSL8096_SALLE1"  Time: 3/7/2017 5:06:11 PM
+	COMPLETED Media Agent "MSL8096_SALLE1"
+
+[Normal] From: BSM@fr-eme1-m002 "Test_JMC"  Time: 3/7/2017 5:06:11 PM
+	Finished rescan of library "MSL8096_SALLE1" with drive "DRV1_MSL8096_SALLE1".
+
+[Normal] From: BMA@fr-eme1-m002 "DRV1_MSL8096_SALLE1"  Time: 3/7/2017 5:06:12 PM
+	STARTING Media Agent "DRV1_MSL8096_SALLE1"
+
+[Normal] From: BMA@fr-eme1-m002 "DRV1_MSL8096_SALLE1"  Time: 3/7/2017 5:06:16 PM
+	=> UMA@fr-eme1-m002@Changer0:0:2:1
+	Loading medium from slot 8 to device Tape0:0:2:0C
+
+[Normal] From: VBDA@fr-eme1-u024.group.wan "/oracle/SXS/oraarch"  Time: 3/7/2017 5:07:19 PM
+	STARTING Disk Agent for fr-eme1-u024.group.wan:/oracle/SXS/oraarch "/oracle/SXS/oraarch".
+
+[2017-03-07 17:07:19 pid(11774) ] INFO: ------------ Debut de script -----------------
+[2017-03-07 17:07:19 pid(11774) ] INFO: R�pertoire temporaire pr�sent
+[2017-03-07 17:07:19 pid(11774) ] INFO: D�placement des archives logs
+mv: cannot stat `/oracle/SXS/oraarch/*.dbf': No such file or directory
+[2017-03-07 17:07:19 pid(11774) ] INFO: DiskUsage 1% / Threshold 70% : Move logs done !
+[2017-03-07 17:07:19 pid(11774) ] INFO: ------------ Fin de script -----------------
+
+
+[2017-03-07 17:08:25 pid(11917) ] INFO: ------------ Debut de script -----------------
+[2017-03-07 17:08:25 pid(11917) ] INFO: DiskUsage 1% / Threshold 70% : Delete logs done !
+[2017-03-07 17:08:25 pid(11917) ] INFO: ------------ Fin de script -----------------
+[Normal] From: VBDA@fr-eme1-u024.group.wan "/oracle/SXS/oraarch"  Time: 3/7/2017 5:08:25 PM
+	COMPLETED Disk Agent for fr-eme1-u024.group.wan:/oracle/SXS/oraarch "/oracle/SXS/oraarch".
+
+[Normal] From: BMA@fr-eme1-m002 "DRV1_MSL8096_SALLE1"  Time: 3/7/2017 5:08:48 PM
+	Tape0:0:2:0C
+	Medium header verification completed, 0 errors found.
+
+
+
+[Normal] From: BMA@fr-eme1-m002 "DRV1_MSL8096_SALLE1"  Time: 3/7/2017 5:09:08 PM
+	Ejecting medium '8'.
+
+[Normal] From: BMA@fr-eme1-m002 "DRV1_MSL8096_SALLE1"  Time: 3/7/2017 5:09:08 PM
+	=> UMA@fr-eme1-m002@Changer0:0:2:1
+	Unloading medium to slot 8 from device Tape0:0:2:0C
+
+
+
+
+
+[Normal] From: BMA@fr-eme1-m002 "DRV1_MSL8096_SALLE1"  Time: 3/7/2017 5:09:45 PM
+	COMPLETED Media Agent "DRV1_MSL8096_SALLE1"
+
+[Normal] From: BSM@fr-eme1-m002 "Test_JMC"  Time: 3/7/2017 5:09:45 PM
+
+	Backup Statistics:
+          
+		Session Queuing Time (hours)         0.08        
+		-------------------------------------------      
+		Completed Disk Agents ........          1          
+		Failed Disk Agents ...........          0          
+		Aborted Disk Agents ..........          0          
+		-------------------------------------------      
+		Disk Agents Total  ...........          1          
+		===========================================      
+		Completed Media Agents .......          1          
+		Failed Media Agents ..........          0          
+		Aborted Media Agents .........          0          
+		-------------------------------------------      
+		Media Agents Total  ..........          1          
+		===========================================      
+		Mbytes Total .................       1 MB        
+		Used Media Total .............          1          
+		Disk Agent Errors Total ......          0    
+
+[2017-03-07 17:09:42 pid(9939) ] INFO: DiskUsage 1% / Threshold 1% : Backup launched !
+[2017-03-07 17:09:42 pid(9939) ] INFO: ------------ Fin de script -----------------
+
+}}}
 
