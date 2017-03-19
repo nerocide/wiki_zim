@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-03-16T22:11:10+01:00
+
+====== HexaX ======
+Created jeudi 16 mars 2017
+
+
+
+
+===== Branchement des moteurs =====
+
+{{./pasted_image.png}}
