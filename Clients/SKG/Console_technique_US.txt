@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-04-25T12:17:58+02:00
+
+====== Console technique US ======
+Created mardi 25 avril 2017
+
+
+===== Modifications =====
+
+* modification de la GW pour 10.70.1.4 (accès internet) au lieu de 10.70.1.1
+{{{code: lang="sh" linenumbers="True"
+default via 10.70.1.4 dev eth1  proto static
+}}}
+
+* ajout d'un service squid pour l'accès internet
+* désactivation SELinux et firewall
+* ajout d'une route pour joindre les machines France 
+{{{code: lang="sh" linenumbers="True"
+10.70.1.0/24 dev eth1  proto kernel  scope link  src 10.70.1.253  metric 1
+10.50.6.0/24 via 10.70.1.1 dev eth1  proto static
+}}}
+
