@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-05-02T11:09:34+02:00
+
+====== OSD ======
+Created mardi 02 mai 2017
+
+
+====== Cablâge ======
+
+{{./pasted_image.png}}
+{{./pasted_image001.png}}
