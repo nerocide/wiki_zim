@@ -52,5 +52,10 @@ Please note that the group is called uucp only in Arch Linux. Other distribution
 References
 USBasp firmware - http://www.fischl.de/usbasp/
 
+
+===== Schéma =====
+{{./pasted_image001.png?width=600}}
+{{./pasted_image.png}}
+
 @arduino @ISP_programmer
 @drone
