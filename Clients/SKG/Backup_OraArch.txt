@@ -20,6 +20,7 @@ La police doit sauvegarder [[/oracle/SID/oraarch/mv_during_backup]]
 
 ==== Ressources nécessaires ====
 * Script de sauvegarde **"fr-eme1-u030:/app/scripts/sap/oraarch_control_v2.sh" (source)**
+* un tâche CRON sur la machine voulant sauvegarder
 * [[DataProtector]]
 	* 1 serveur de sauvegarde
 	* 1 client connecté
@@ -28,7 +29,7 @@ La police doit sauvegarder [[/oracle/SID/oraarch/mv_during_backup]]
 			* 1 pre script pour déplacement les fichiers à sauvegarder dans un répertoire temporaire "mv_during_backup" (ex: /exploit/oraarch_control_v2.sh -q -S SXS)
 			* 1 post script pour supprimer les fichiers sauvegardés (ex: /exploit/oraarch_control_v2.sh -d -S SXS)
 
-===== Mise en place sur fr-eme1-u024 =====
+===== Mise en place sur un client (fr-eme1-u024) =====
 Suivre les étapes suivantes
 
 ==== Déploiement script ====
@@ -38,12 +39,26 @@ installer le script se trouvant dans **fr-eme1-u030:/exploit/sap/oraarch_control
 **lancement toutes les heures**
 01 * * * * /exploit/oraarch_control_v2.sh  -p Test_JMC -S SXS
 
+===== Serveur de backup (fr-eme1-m002) =====
+
+==== Service SSH ====
+Ajouter la clé publique de fr-eme1-u024 aux authorized_keys de l'utilisateur Administrator.
+{{{code: lang="sh" linenumbers="True"
+SXS [root@fr-eme1-u024 ~]# cat /root/.ssh/id_rsa.pub 
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAw0bv7YNQ261MaL4jJhaM0HJithauJa1to9R+Ph5SoNFIOYAkY+O1cc1kw2jifJm+PbDQLTVCtY8qhFmXKctFsRWvXcqXjTCxwPGcsBTosDFQcDd4hlxlKnpv+LipzTWZ6ENgzlL75TmtZNeQ01oaGl0knLF2ZPUyKu4M2w2Sw4/9TUXRCfUHGy7N9omL04rrNpr9fjakEKPr7tK6cEflePlRRjHJGTsk7TdS90OjXhJkldEEz8gcqLFefMoFQRRsI6MTQYiWGQQW2QqeZSBaOFQUPEynZP3O0coqw6UTg9ItpYeFuqMj9BAjDqjpQrEWCRpTksRJlHmqCeN/v4sRcQ== root@fr-eme1-u024-RHL6
+}}}
+
+
+Le ficheir authorized_keys se trouve dans: **C:\Users\Administrator\.ssh**
+{{./pasted_image003.png}}
+
 ==== Police DataProtector ====
 
 {{./pasted_image.png}}
 
 {{./pasted_image001.png}}
 
+Dans les propriètés du serveur dans la police
 {{./pasted_image002.png}}
 
 ==== Test de fonctionnement ====
