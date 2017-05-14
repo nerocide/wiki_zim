@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-05-12T00:11:40+02:00
+
+====== ESC 10A ======
+Created vendredi 12 mai 2017
+
+===== Flash =====
+
+connecter le D3/D2/GND
