@@ -1,0 +1,42 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-05-12T00:11:40+02:00
+
+====== EMAX/XP ESC 12A ======
+Created vendredi 12 mai 2017
+
+===== A propos =====
+The ESC supports 1S to 3S operation.
+Switching speed is slow.
+Low side is Nfets and high side is Pfets.
+In order to use the bootloader, the resistor and capacitor circled in blue must be removed. Removing the cap will increase the noise sensitivity of the input, and may affect running performance.
+It uses the "XP_12A_.." code.
+
+===== Flash du contrôleur =====
+en utilisant l'interface C2 de l'esc avec un arduino nano
+
+===== Schéma de branchement =====
+
+{{./pasted_image006.png?width=400}}
+
+==== Côté arduino nano ====
+connecter le D3/D2/3,3V/GND
+| Arduino Port<| Silab C2 port<|
+|:-------------|:--------------|
+| 3,3V         | Vin           |
+| D2           | C2C           |
+| D3           | C2D           |
+| GND          | GND           |
+
+
+==== Côté ESC ====
+une broche 4 fils comme suit
+| Couleur | C2 interface port name |
+|:--------|:-----------------------|
+| White   | C2D                    |
+| Red     | C2CK                   |
+| None    | 3,3V                   |
+| Black   | GND                    |
+
+
+{{./pasted_image004.png?width=300}}{{./pasted_image005.png?width=313}}
