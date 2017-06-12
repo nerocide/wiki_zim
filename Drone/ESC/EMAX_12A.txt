@@ -2,7 +2,7 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2017-05-12T00:11:40+02:00
 
-====== EMAX/XP ESC 12A ======
+====== jEMAX/XP ESC 12A ======
 Created vendredi 12 mai 2017
 
 ===== A propos =====
