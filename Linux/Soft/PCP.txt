@@ -10,3 +10,10 @@ Created vendredi 16 juin 2017
 subscription-manager repos --enable=rhel-7-server-optional-beta-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-beta-rpms
 yum install pcp-export-pcp2influxdb
 
+===== Utilisation =====
+
+==== Liste des metriques d'une archive ====
+pminfo -a [[/var/log/pcp/pmlogger/fr-eme1-u002/20170621.0]]
+
+==== Valeur pour un metrique ====
+pmrep -p -a /var/log/pcp/pmlogger/fr-eme1-u002/20170621.0 -t 60 rpc.server.rpccnt
