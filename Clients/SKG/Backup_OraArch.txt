@@ -20,7 +20,7 @@ La police doit sauvegarder [[/oracle/SID/oraarch/mv_during_backup]]
 
 ==== Ressources nécessaires ====
 * Script de sauvegarde **"fr-eme1-u030:/app/scripts/sap/oraarch_control_v2.sh" (source)**
-* un tâche CRON sur la machine voulant sauvegarder
+* une tâche CRON sur la machine voulant sauvegarder
 * [[DataProtector]]
 	* 1 serveur de sauvegarde
 	* 1 client connecté
