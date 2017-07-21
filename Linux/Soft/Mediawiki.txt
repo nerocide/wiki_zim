@@ -1,0 +1,104 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-07-19T16:34:40+02:00
+
+====== Mediawiki ======
+Created mercredi 19 juillet 2017
+
+ssh root@192.168.56.101
+
+===== Info =====
+Sur le wiki oxya
+https://wiki.oxya.com/index.php/Special:Version
+Personnalisation du wikieditor
+http://192.168.56.101/wiki/index.php/Personnaliser_l%27%C3%A9diteur_de_Mediawiki_(WikiEditor)
+
+===== Installation =====
+
+==== Procédure ====
+Installer la version 1.29.0 minimum avec les extension core de base et 
+
+==== Centos 7 ====
+
+
+{{{code: lang="sh" linenumbers="True"
+yum -y install mariadb-server httpd wget git
+yum -y install epel-release
+yum -y update
+chkconfig mariadb on
+chkconfig httpd on
+rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+yum -y install php56w php56w-opcache php56w-mbstring php56w-mysql php56w-xml
+service httpd start
+service mysqld start
+wget https://releases.wikimedia.org/mediawiki/1.29/mediawiki-1.29.0.tar.gz
+tar xzvf mediawiki-1.29.0.tar.gz
+mv mediawiki-1.29.0 /var/www/html/wiki
+
+}}}
+
+
+
+{{{code: lang="sh" linenumbers="True"
+Alias /wiki2 /var/www/html/wiki2
+
+<Directory /var/www/html/wiki2/>
+	Options +FollowSymLinks
+	AllowOverride All
+	<IfVersion >= 2.3>
+		Require all granted
+	</IfVersion>
+	<IfVersion < 2.3>
+		order allow,deny
+		allow from all
+	</IfVersion>
+</Directory>
+
+# some directories must be protected
+<Directory /var/www/html/wiki2/config>
+	Options -FollowSymLinks
+	AllowOverride None
+    <IfModule mod_php7.c>
+        php_admin_flag engine off
+    </IfModule>
+    <IfModule mod_php5.c>
+        php_admin_flag engine off
+    </IfModule>
+</Directory>
+<Directory /var/www/html/wiki2/images>
+	Options -FollowSymLinks
+	AllowOverride None
+    <IfModule mod_php7.c>
+        php_admin_flag engine off
+    </IfModule>
+    <IfModule mod_php5.c>
+        php_admin_flag engine off
+    </IfModule>
+</Directory>
+<Directory /var/www/html/wiki2/upload>
+	Options -FollowSymLinks
+	AllowOverride None
+    <IfModule mod_php7.c>
+        php_admin_flag engine off
+    </IfModule>
+    <IfModule mod_php5.c>
+        php_admin_flag engine off
+    </IfModule>
+</Directory>
+}}}
+
+
+
+==== Extension ====
+https://www.mediawiki.org/wiki/Extension:VisualEditor
+
+yum -y install nodejs npm
+git parsoid
+mv pardoid /opt
+npm install
+systemctl daemon-reload
+voir => https://www.centos.org/forums/viewtopic.php?f=47&t=53223&start=10
+
+
+[[https://www.mediawiki.org/wiki/Extension:VisualEditor|https://www.mediawiki.org/wiki/Extension:]]MSupload
+[[https://www.mediawiki.org/wiki/Extension:VisualEditor|https://www.mediawiki.org/wiki/Extension:]]UploadWizard
