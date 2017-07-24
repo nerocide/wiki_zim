@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-07-21T10:53:55+02:00
+
+====== Etude inventaire supervision ======
+Created vendredi 21 juillet 2017
+
+===== But =====
+surveiller les windows en snmp
+surveiller le ESX
+avoir un référentiel unique pour les machines
+
+==== Vmware ====
+shinken install vmware
+cpan -i Nagios::Plugin
+
+===== Côté inventaire =====
+installer fusion inventory ou ocs inventory
+
+===== Côté supervison =====
+installer le connecteur permettant les interrogations à une base mysql
+shinken install mysql-import
