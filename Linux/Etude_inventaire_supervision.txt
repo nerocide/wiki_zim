@@ -12,7 +12,9 @@ avoir un référentiel unique pour les machines
 
 ==== Vmware ====
 shinken install vmware
-cpan -i Nagios::Plugin
+cpan -i Monitoring::Plugins
+sed -i -e 's/Nagios/Monitoring/g' check_esx3.pl 
+
 
 ===== Côté inventaire =====
 installer fusion inventory ou ocs inventory
