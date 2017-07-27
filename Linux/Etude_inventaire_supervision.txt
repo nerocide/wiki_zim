@@ -11,9 +11,35 @@ surveiller le ESX
 avoir un référentiel unique pour les machines
 
 ==== Vmware ====
+{{{code: lang="sh" linenumbers="True"
+#https://github.com/op5/check_vmware_api
+#install vmware SDK
+tar xzvf VMware-vSphere-Perl-SDK-6.5.0-4566394.x86_64.tar.gz
+cd vmware-vsphere-cli-distrib/
+#./vmware-install.pl
+#./vmware-install.pl --prefix=/opt/vmwarecli EULA_AGREED=yes --default
+./vmware-install.pl EULA_AGREED=yes --default
+
+# install shinken pack and plugin
 shinken install vmware
-cpan -i Monitoring::Plugins
-sed -i -e 's/Nagios/Monitoring/g' check_esx3.pl 
+
+# télécharger les bon plugins
+	# dépendance
+	cpan -i Crypt::SSLeay
+wget https://raw.githubusercontent.com/op5/check_vmware_api/master/check_vmware_api.pl --no-check-certificate
+chmod +x check_vmware_api.pl
+# mettre à jour la conf shinken (pack)
+cd /etc/shinken/packs/vmware
+sed -i -e 's/check_esx3.pl/check_vmware_api.pl/g'  cluster/commands.cfg esx/commands.cfg vcenter/commands.cfg vm/commands.cfg
+
+## Exemples de commande
+# connexion sur ESXi demande d'info sur une VM
+./check_vmware_api.pl -H fr-eme1-e001.group.wan -u root -p Soleil123 -N FR-EME1-U014 -l mem
+# connexion au DC et info sur cluster 1
+./check_vmware_api.pl -D FR-EME1-M900 -u "FR-EME1-M900\administrator" -p Soleil123 -C OXYA-EME-SKG-Cluster1 -l CPU
+# connexion au DC et demande info VM
+./check_vmware_api.pl -D FR-EME1-M900 -u "FR-EME1-M900\administrator" -p Soleil123 -N FR-EME1-U014 -l CPU
+}}}
 
 
 ===== Côté inventaire =====
