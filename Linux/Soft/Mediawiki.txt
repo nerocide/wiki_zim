@@ -20,7 +20,6 @@ Installer la version 1.29.0 minimum avec les extension core de base et
 
 ==== Centos 7 ====
 
-
 {{{code: lang="sh" linenumbers="True"
 yum -y install mariadb-server httpd wget git
 yum -y install epel-release
