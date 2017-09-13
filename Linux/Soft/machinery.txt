@@ -26,6 +26,7 @@ machinery compare HOSTNAME1 HOSTNAME2
 #Fully Inspect a System and Export a Kiwi Description
 machinery inspect --extract-files HOSTNAME
 machinery export-kiwi --kiwi-dir=~/kiwi HOSTNAME
+
 #Fully Inspect a System and Export an AutoYaST Profile
 machinery inspect --extract-files HOSTNAME
 machinery export-autoyast --autoyast-dir=~/autoyast HOSTNAME
