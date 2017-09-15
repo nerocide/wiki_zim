@@ -88,14 +88,15 @@ Alias /wiki2 /var/www/html/wiki2
 
 
 
-===== Extension =====
+===== Extensions =====
 
-===== Visual eidtor =====
+==== Visual editor ====
 https://www.mediawiki.org/wiki/Extension:VisualEditor
 git submodule update --init
 
 
 === conf LocalSettings.conf ===
+{{{code: lang="php" linenumbers="True"
 wfLoadExtension( 'VisualEditor' );
 
 // Enable by default for everybody
@@ -124,16 +125,23 @@ $wgVirtualRestConfig['modules']['parsoid'] = array(
 #$wgVisualEditorParsoidURL = 'http://localhost:8000';
 $wgSessionsInObjectCache = true;
 $wgVirtualRestConfig['modules']['parsoid']['forwardCookies'] = true;
+}}}
+
 
 
 ==== PARSOID ====
+{{{code: lang="sh" linenumbers="True"
 yum -y install nodejs npm
 git parsoid
 mv pardoid /opt
 npm install
 systemctl daemon-reload
+}}}
+
 voir => https://www.centos.org/forums/viewtopic.php?f=47&t=53223&start=10
 
+==== fichier de conf ====
+{{{code: lang="sh" linenumbers="True"
 worker_heartbeat_timeout: 300000
 logging:
 	level: trace
@@ -147,7 +155,36 @@ services:
 		debug: true
 		linting: true
 		linterSendAPI: false
+}}}
 
+
+===== PdfHandler =====
+Doc https://www.mediawiki.org/wiki/Extension:PdfHandler
+
+==== Prérequis ====
+{{{code: lang="sh" linenumbers="True"
+yum install -y ghostscript xpdf ImageMagick
+}}}
+
+
+==== Installation ====
+{{{code: lang="sh" linenumbers="True"
+wget https://extdist.wmflabs.org/dist/extensions/PdfHandler-REL1_29-6766ffc.tar.gz
+tar xzvf PdfHandler-REL1_29-6766ffc.tar.gz
+mv PdfHandler /var/www/html/wiki/extensions/
+chown -R apache:apache /var/www/html/wiki/extensions/PdfHandler
+}}}
+
+
+==== LocalSettings.php ====
+$wfLoadExtension( 'PdfHandler' );
+
+===== PdfBook =====
+https://www.mediawiki.org/wiki/Extension:PdfBook
+Prérequis
+{{{code: lang="sh" linenumbers="True"
+yum install -y htmldoc
+}}}
 
 
 

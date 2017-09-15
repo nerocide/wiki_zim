@@ -5,6 +5,7 @@ Creation-Date: 2016-08-22T17:04:35+02:00
 ====== Memory ======
 Created lundi 22 août 2016
 
+
 **Mémoire par utilisateur**
 {{{code: lang="sh" linenumbers="False"
 ps hax -o rss,user | awk '{a[$2]+=$1;}END{for(i in a)print i" "int(a[i]/1024+0.5);}' | sort -rnk2

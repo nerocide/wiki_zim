@@ -19,5 +19,7 @@ Created dimanche 19 mars 2017
 en console lancer la commande dump et sauvegarder son retour
 
 ==== Restauration ====
-en console copie le contenu d'un dump et l'appliquer, puis lancer la commande save
+en console copie le contenu d'un dump et l'appliquer, puis lancer la commande "**save**"
 
+===== Documentation constructeur =====
+[[~/Documents/Drone/SPRacingF3-Manual-latest.pdf]]
