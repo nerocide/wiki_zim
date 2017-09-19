@@ -18,7 +18,7 @@ http://192.168.56.101/wiki/index.php/Personnaliser_l%27%C3%A9diteur_de_Mediawiki
 ==== Procédure ====
 Installer la version 1.29.0 minimum avec les extension core de base et 
 
-==== Centos 7 ====
+=== Centos 7 ===
 
 {{{code: lang="sh" linenumbers="True"
 yum -y install mariadb-server httpd wget git
@@ -87,13 +87,11 @@ Alias /wiki2 /var/www/html/wiki2
 }}}
 
 
-
 ===== Extensions =====
 
 ==== Visual editor ====
 https://www.mediawiki.org/wiki/Extension:VisualEditor
 git submodule update --init
-
 
 === conf LocalSettings.conf ===
 {{{code: lang="php" linenumbers="True"
@@ -128,7 +126,6 @@ $wgVirtualRestConfig['modules']['parsoid']['forwardCookies'] = true;
 }}}
 
 
-
 ==== PARSOID ====
 {{{code: lang="sh" linenumbers="True"
 yum -y install nodejs npm
@@ -140,7 +137,7 @@ systemctl daemon-reload
 
 voir => https://www.centos.org/forums/viewtopic.php?f=47&t=53223&start=10
 
-==== fichier de conf ====
+=== fichier de conf ===
 {{{code: lang="sh" linenumbers="True"
 worker_heartbeat_timeout: 300000
 logging:
@@ -158,16 +155,16 @@ services:
 }}}
 
 
-===== PdfHandler =====
+==== PdfHandler ====
 Doc https://www.mediawiki.org/wiki/Extension:PdfHandler
 
-==== Prérequis ====
+=== Prérequis ===
 {{{code: lang="sh" linenumbers="True"
 yum install -y ghostscript xpdf ImageMagick
 }}}
 
 
-==== Installation ====
+=== Installation ===
 {{{code: lang="sh" linenumbers="True"
 wget https://extdist.wmflabs.org/dist/extensions/PdfHandler-REL1_29-6766ffc.tar.gz
 tar xzvf PdfHandler-REL1_29-6766ffc.tar.gz
@@ -176,17 +173,45 @@ chown -R apache:apache /var/www/html/wiki/extensions/PdfHandler
 }}}
 
 
-==== LocalSettings.php ====
+=== LocalSettings.php ===
 $wfLoadExtension( 'PdfHandler' );
 
-===== PdfBook =====
+==== PdfBook ====
 https://www.mediawiki.org/wiki/Extension:PdfBook
-Prérequis
+
+=== Prérequis ===
 {{{code: lang="sh" linenumbers="True"
 yum install -y htmldoc
 }}}
 
 
+wget https://code.organicdesign.co.nz/extensions/zipball/master
+unzip master
+mv MediaWiki/PdfBook [[/var/www/html/wiki/extensions/]]
+chown -R apache:apache /var/www/html/wiki/extensions/*
+
+=== LocalSettings.php ===
+wfLoadExtension( 'PdfBook' );
+
+==== PdfWriter ====
+https://www.mediawiki.org/wiki/Extension:PDF_Writer
+
+=== installation ===
+{{{code: lang="sh" linenumbers="True"
+easy_install mwlib && rehash && easy_install mwlib.rl
+}}}
+
+
+==== ConsoleOutput ====
+https://www.mediawiki.org/wiki/Extension:ConsoleOutput
+cd extensions
+git clone http://git.funtoo.org/MediaWiki-ConsoleOutput [[ConsoleOutput]]
+require_once( "$IP/extensions/ConsoleOutput/ConsoleOutput.php" );
+
+==== SyntaxHighLight ====
+https://www.mediawiki.org/wiki/Extension:SyntaxHighlight
+wget https://www.mediawiki.org/wiki/Special:ExtensionDistributor/SyntaxHighlight_GeSHi
+wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 
 [[https://www.mediawiki.org/wiki/Extension:VisualEditor|https://www.mediawiki.org/wiki/Extension:]]MSupload
 [[https://www.mediawiki.org/wiki/Extension:VisualEditor|https://www.mediawiki.org/wiki/Extension:]]UploadWizard
