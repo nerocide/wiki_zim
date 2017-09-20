@@ -215,3 +215,10 @@ wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 
 [[https://www.mediawiki.org/wiki/Extension:VisualEditor|https://www.mediawiki.org/wiki/Extension:]]MSupload
 [[https://www.mediawiki.org/wiki/Extension:VisualEditor|https://www.mediawiki.org/wiki/Extension:]]UploadWizard
+
+Aide sur les extensions de gestion de droits:
+https://www.mediawiki.org/wiki/Category:Page_specific_user_rights_extensions
+
+==== SimpleSecurity ====
+https://www.mediawiki.org/wiki/Extension:SimpleSecurity (https://extdist.wmflabs.org/dist/extensions/SimpleSecurity-REL1_29-e3b77d0.tar.gz)
+
