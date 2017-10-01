@@ -222,3 +222,14 @@ https://www.mediawiki.org/wiki/Category:Page_specific_user_rights_extensions
 ==== SimpleSecurity ====
 https://www.mediawiki.org/wiki/Extension:SimpleSecurity (https://extdist.wmflabs.org/dist/extensions/SimpleSecurity-REL1_29-e3b77d0.tar.gz)
 
+==== Collection ====
+https://www.mediawiki.org/wiki/Extension:Collection
+require_once "$IP/extensions/Collection/Collection.php";
+
+==== SphinxSearch ====
+https://www.mediawiki.org/wiki/Extension:SphinxSearch
+
+https://www.mediawiki.org/wiki/Extension:Approved_Revs
+https://www.mediawiki.org/wiki/Extension:FlaggedRevs
+
+
