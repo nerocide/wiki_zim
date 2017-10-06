@@ -1,0 +1,49 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-10-06T23:07:22+02:00
+
+====== Banc test moteur ======
+Créée le vendredi 06 octobre 2017
+
+===== Matériel =====
+[[https://fr.aliexpress.com/item/1PCS-Nano-3-0-controller-compatible-with-nano-CH340-USB-driver-NO-CABLE-NANO-V3-0/32353404307.html?spm=a2g0s.9042311.0.0.uJQ96L|arduino nano 3.0]]
+
+==== Voltage sensor ====
+[[https://fr.aliexpress.com/item/Smart-Electronics-NEW-Standard-Voltage-Sensor-Module-Test-Electronic-Bricks-For-Robot-Arduino/32658259839.html?spm=a2g0s.9042311.0.0.uJQ96L|Lien]]
+
+Tension d'entrée: DC0-25 V
+Tension mesurée: DC0.02445 V-25 V
+Résolution de la tension anaolgique: 0.00489 V
+Interface d'entrée: rouge VCC, negative GND
+
+Avec les 3 pin du connecteur, connectez ce module avec votre Arduino, vous pouvez aussi le connecter avec un écran IICLCD1602 LCD pour afficher la tension mesurée.
+
+=== Code de référence ===
+{{{code: lang="c" linenumbers="True"
+#include <Wire.h>
+int val11;
+int val2;
+void setup()
+{
+	pinMode(LED1,OUTPUT);
+	Serial.begin(9600);
+	Serial.println("Emartee.Com");
+	Serial.println("Voltage: ");
+	Serial.print("V");
+}
+void loop()
+{
+	float temp;
+	val11=analogRead(1);
+	temp=val11/4.092;
+	val11=(int)temp;//
+	val2=((val11%100)/10);
+	Serial.println(val2);
+	delay(1000);
+}
+}}}
+
+[[https://fr.aliexpress.com/item/sensor-kit-37-in-1-Sensor-Kit-For-Arduino-RRGB-joystick-photosensitive-Sound-Detection-Obstacle-avoidance/32825553999.html?spm=a2g0s.9042311.0.0.uJQ96L|pack de sonde]]
+[[https://fr.aliexpress.com/item/Free-Shipping-0-91-Inch-128x32-IIC-I2C-Blue-OLED-LCD-Display-DIY-Oled-Module-SSD1306/32792474110.html?spm=a2g0s.9042311.0.0.uJQ96L|Ecran OLED]]
+[[https://fr.aliexpress.com/item/Hot-Sale-New-30A-Range-ACS712-Current-Sensor-Module/32316428367.html?spm=a2g0s.9042311.0.0.uJQ96L|Ampermetre]] 30A ACS712
+[[https://fr.aliexpress.com/item/Film-Force-Sensitive-Resistor-50N-5kg-FSR-Sensor-Module-for-Arduino-Low-Cost-Easy-to-Convert/32830267123.html?spm=a2g0s.9042311.0.0.uJQ96L|Capteur pression]] 5kg FSR
