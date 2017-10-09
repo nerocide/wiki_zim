@@ -3,22 +3,39 @@ Wiki-Format: zim 0.4
 Creation-Date: 2017-10-06T23:07:22+02:00
 
 ====== Banc test moteur ======
-Créée le vendredi 06 octobre 2017
 
 ===== Matériel =====
-[[https://fr.aliexpress.com/item/1PCS-Nano-3-0-controller-compatible-with-nano-CH340-USB-driver-NO-CABLE-NANO-V3-0/32353404307.html?spm=a2g0s.9042311.0.0.uJQ96L|arduino nano 3.0]]
+
+==== Arduino nano 3.0 ====
+[[https://fr.aliexpress.com/item/1PCS-Nano-3-0-controller-compatible-with-nano-CH340-USB-driver-NO-CABLE-NANO-V3-0/32353404307.html?spm=a2g0s.9042311.0.0.uJQ96L|Lien]]
+{{./pasted_image004.png?width=400}}
 
 ==== Voltage sensor ====
 [[https://fr.aliexpress.com/item/Smart-Electronics-NEW-Standard-Voltage-Sensor-Module-Test-Electronic-Bricks-For-Robot-Arduino/32658259839.html?spm=a2g0s.9042311.0.0.uJQ96L|Lien]]
 
-Tension d'entrée: DC0-25 V
-Tension mesurée: DC0.02445 V-25 V
-Résolution de la tension anaolgique: 0.00489 V
-Interface d'entrée: rouge VCC, negative GND
+=== Spec VS ===
+taille: 25mm × 13mm/0.98 " × 0.51 " (environ)
+ce module est basé sur le principe de résistif diviseur de tension conception,
+peut faire le rouge terminal connecteur tension d'entrée à 5 fois plus petit. pour analogique tensions d'entrée jusqu'à 5 v,
+la détection de tension module tension d'entrée pas plus que 5Vx5 = 25 V
+(si vous utilisez 3.3 V systèmes, tension d'entrée pas plus que 3.3Vx5 = 16.5 V).
+pour arduino AVR puces ont 10-bit AD, donc ce module simule une résolution de 0.00489 V (5 V/1023),
+si la tension minimale de tension d'entrée module de détection est 0.00489Vx5 = 0.02445 V.
+gamme de tension d'entrée: DC0-25 V
+plage de détection de tension: DC0.02445 V-25 V
+tension analogique résolution: 0.00489 V
+Interface de sortie: " + " connecté 5/3. 3 V, "-" connecté GND, " s " connecté AD pins
+DC interface d'entrée: rouge borne positive avec VCC, négative avec GND
+par 3 P connecteur, connecter ce module avec l'expansion de conseil,
+non seulement, il est plus facile pour vous à détecter la tension batterie,
+peut également utiliser la IICLCD1602 LCD à affichage tension.
+aeProduct.getSubject()
+1×Voltage Capteur Module
+
 
 Avec les 3 pin du connecteur, connectez ce module avec votre Arduino, vous pouvez aussi le connecter avec un écran IICLCD1602 LCD pour afficher la tension mesurée.
 
-=== Code de référence ===
+=== Code VS ===
 {{{code: lang="c" linenumbers="True"
 #include <Wire.h>
 int val11;
@@ -43,7 +60,583 @@ void loop()
 }
 }}}
 
-[[https://fr.aliexpress.com/item/sensor-kit-37-in-1-Sensor-Kit-For-Arduino-RRGB-joystick-photosensitive-Sound-Detection-Obstacle-avoidance/32825553999.html?spm=a2g0s.9042311.0.0.uJQ96L|pack de sonde]]
+
+==== Pack de sonde ====
+
+==== Ecran OLED ====
 [[https://fr.aliexpress.com/item/Free-Shipping-0-91-Inch-128x32-IIC-I2C-Blue-OLED-LCD-Display-DIY-Oled-Module-SSD1306/32792474110.html?spm=a2g0s.9042311.0.0.uJQ96L|Ecran OLED]]
+{{./pasted_image.png?width=200}}
+0.91 Pouce 128x32 IIC I2C Bleu OLED LCD Affichage DIY Oled Module SSD1306 Pilote IC DC 3.3 V 5 V Pour Arduino PIC Chaude vente
+
+caractéristiques:
+ÉCRAN OLED, pas besoin de rétro-éclairage, auto-éclairage, les performances d'affichage est mieux que les traditionnels LCD affichage, également plus faible consommation.
+Driver IC: SSD1306
+taille: 0.91 pouce OLED
+résolution: 128x32
+IIC interface
+affichage Couleur: Bleu
+Pin Description:
+GND: Puissance Sol
+VCC: Puissance + (DC 3.3 ~ 5 v)
+SCL: Horloge Ligne
+SDA: Ligne de Données
+Contenu de l'emballage:
+1X0.91 Pouces OLED LCD Module D'affichage
+
+=== Code OLED ===
+https://www.pjrc.com/teensy/td_libs_SSD1306.html
+{{{code: lang="c" linenumbers="True"
+32 vs 64 Pixel Height
+
+You may need to edit Adafruit_SSD1306.h to set the display height.
+Look for this code and uncomment either 64 or 32 pixel height.
+
+/*=========================================================================
+    SSD1306 Displays
+    -----------------------------------------------------------------------
+    The driver is used in multiple displays (128x64, 128x32, etc.).
+    Select the appropriate display below to create an appropriately
+    sized framebuffer, etc.
+
+    SSD1306_128_64  128x64 pixel display
+
+    SSD1306_128_32  128x32 pixel display
+
+    -----------------------------------------------------------------------*/
+//   #define SSD1306_128_64
+   #define SSD1306_128_32
+/*=========================================================================*/
+Example Program
+
+This example program comes with the library. You can open it from the File -> Examples -> Adafruit_SSD1306 -> ssd1306_128x32_spi menu.
+/*********************************************************************
+This is an example for our Monochrome OLEDs based on SSD1306 drivers
+
+  Pick one up today in the adafruit shop!
+  ------> http://www.adafruit.com/category/63_98
+
+This example is for a 128x32 size display using SPI to communicate
+4 or 5 pins are required to interface
+
+Adafruit invests time and resources providing this open source code, 
+please support Adafruit and open-source hardware by purchasing 
+products from Adafruit!
+
+Written by Limor Fried/Ladyada  for Adafruit Industries.  
+BSD license, check license.txt for more information
+All text above, and the splash screen must be included in any redistribution
+*********************************************************************/
+
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+// If using software SPI (the default case):
+#define OLED_MOSI   9
+#define OLED_CLK   10
+#define OLED_DC    11
+#define OLED_CS    12
+#define OLED_RESET 13
+Adafruit_SSD1306 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+
+/* Uncomment this block to use hardware SPI
+#define OLED_DC     6
+#define OLED_CS     7
+#define OLED_RESET  8
+Adafruit_SSD1306 display(OLED_DC, OLED_RESET, OLED_CS);
+*/
+
+#define NUMFLAKES 10
+#define XPOS 0
+#define YPOS 1
+#define DELTAY 2
+
+#define LOGO16_GLCD_HEIGHT 16 
+#define LOGO16_GLCD_WIDTH  16 
+static const unsigned char PROGMEM logo16_glcd_bmp[] =
+{ B00000000, B11000000,
+  B00000001, B11000000,
+  B00000001, B11000000,
+  B00000011, B11100000,
+  B11110011, B11100000,
+  B11111110, B11111000,
+  B01111110, B11111111,
+  B00110011, B10011111,
+  B00011111, B11111100,
+  B00001101, B01110000,
+  B00011011, B10100000,
+  B00111111, B11100000,
+  B00111111, B11110000,
+  B01111100, B11110000,
+  B01110000, B01110000,
+  B00000000, B00110000 };
+
+#if (SSD1306_LCDHEIGHT != 32)
+#error("Height incorrect, please fix Adafruit_SSD1306.h!");
+#endif
+
+void setup()   {                
+  Serial.begin(9600);
+  
+  // by default, we'll generate the high voltage from the 3.3v line internally! (neat!)
+  display.begin(SSD1306_SWITCHCAPVCC);
+  // init done
+  
+  display.display(); // show splashscreen
+  delay(2000);
+  display.clearDisplay();   // clears the screen and buffer
+
+  // draw a single pixel
+  display.drawPixel(10, 10, WHITE);
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+
+  // draw many lines
+  testdrawline();
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+
+  // draw rectangles
+  testdrawrect();
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+
+  // draw multiple rectangles
+  testfillrect();
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+
+  // draw mulitple circles
+  testdrawcircle();
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+
+  // draw a white circle, 10 pixel radius
+  display.fillCircle(display.width()/2, display.height()/2, 10, WHITE);
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+
+  testdrawroundrect();
+  delay(2000);
+  display.clearDisplay();
+
+  testfillroundrect();
+  delay(2000);
+  display.clearDisplay();
+
+  testdrawtriangle();
+  delay(2000);
+  display.clearDisplay();
+   
+  testfilltriangle();
+  delay(2000);
+  display.clearDisplay();
+
+  // draw the first ~12 characters in the font
+  testdrawchar();
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+
+  // draw scrolling text
+  testscrolltext();
+  delay(2000);
+  display.clearDisplay();
+
+  // text display tests
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0,0);
+  display.println("Hello, world!");
+  display.setTextColor(BLACK, WHITE); // 'inverted' text
+  display.println(3.141592);
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  display.print("0x"); display.println(0xDEADBEEF, HEX);
+  display.display();
+  delay(2000);
+
+  // miniature bitmap display
+  display.clearDisplay();
+  display.drawBitmap(30, 16,  logo16_glcd_bmp, 16, 16, 1);
+  display.display();
+
+  // invert the display
+  display.invertDisplay(true);
+  delay(1000); 
+  display.invertDisplay(false);
+  delay(1000); 
+
+  // draw a bitmap icon and 'animate' movement
+  testdrawbitmap(logo16_glcd_bmp, LOGO16_GLCD_HEIGHT, LOGO16_GLCD_WIDTH);
+}
+
+
+void loop() {
+  
+}
+
+
+void testdrawbitmap(const uint8_t *bitmap, uint8_t w, uint8_t h) {
+  uint8_t icons[NUMFLAKES][3];
+ 
+  // initialize
+  for (uint8_t f=0; f< NUMFLAKES; f++) {
+    icons[f][XPOS] = random(display.width());
+    icons[f][YPOS] = 0;
+    icons[f][DELTAY] = random(5) + 1;
+    
+    Serial.print("x: ");
+    Serial.print(icons[f][XPOS], DEC);
+    Serial.print(" y: ");
+    Serial.print(icons[f][YPOS], DEC);
+    Serial.print(" dy: ");
+    Serial.println(icons[f][DELTAY], DEC);
+  }
+
+  while (1) {
+    // draw each icon
+    for (uint8_t f=0; f< NUMFLAKES; f++) {
+      display.drawBitmap(icons[f][XPOS], icons[f][YPOS], logo16_glcd_bmp, w, h, WHITE);
+    }
+    display.display();
+    delay(200);
+    
+    // then erase it + move it
+    for (uint8_t f=0; f< NUMFLAKES; f++) {
+      display.drawBitmap(icons[f][XPOS], icons[f][YPOS],  logo16_glcd_bmp, w, h, BLACK);
+      // move it
+      icons[f][YPOS] += icons[f][DELTAY];
+      // if its gone, reinit
+      if (icons[f][YPOS] > display.height()) {
+	icons[f][XPOS] = random(display.width());
+	icons[f][YPOS] = 0;
+	icons[f][DELTAY] = random(5) + 1;
+      }
+    }
+   }
+}
+
+
+void testdrawchar(void) {
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0,0);
+
+  for (uint8_t i=0; i < 168; i++) {
+    if (i == '\n') continue;
+    display.write(i);
+    if ((i > 0) && (i % 21 == 0))
+      display.println();
+  }    
+  display.display();
+}
+
+void testdrawcircle(void) {
+  for (int16_t i=0; i<display.height(); i+=2) {
+    display.drawCircle(display.width()/2, display.height()/2, i, WHITE);
+    display.display();
+  }
+}
+
+void testfillrect(void) {
+  uint8_t color = 1;
+  for (int16_t i=0; i<display.height()/2; i+=3) {
+    // alternate colors
+    display.fillRect(i, i, display.width()-i*2, display.height()-i*2, color%2);
+    display.display();
+    color++;
+  }
+}
+
+void testdrawtriangle(void) {
+  for (int16_t i=0; i<min(display.width(),display.height())/2; i+=5) {
+    display.drawTriangle(display.width()/2, display.height()/2-i,
+                     display.width()/2-i, display.height()/2+i,
+                     display.width()/2+i, display.height()/2+i, WHITE);
+    display.display();
+  }
+}
+
+void testfilltriangle(void) {
+  uint8_t color = WHITE;
+  for (int16_t i=min(display.width(),display.height())/2; i>0; i-=5) {
+    display.fillTriangle(display.width()/2, display.height()/2-i,
+                     display.width()/2-i, display.height()/2+i,
+                     display.width()/2+i, display.height()/2+i, WHITE);
+    if (color == WHITE) color = BLACK;
+    else color = WHITE;
+    display.display();
+  }
+}
+
+void testdrawroundrect(void) {
+  for (int16_t i=0; i<display.height()/2-2; i+=2) {
+    display.drawRoundRect(i, i, display.width()-2*i, display.height()-2*i, display.height()/4, WHITE);
+    display.display();
+  }
+}
+
+void testfillroundrect(void) {
+  uint8_t color = WHITE;
+  for (int16_t i=0; i<display.height()/2-2; i+=2) {
+    display.fillRoundRect(i, i, display.width()-2*i, display.height()-2*i, display.height()/4, color);
+    if (color == WHITE) color = BLACK;
+    else color = WHITE;
+    display.display();
+  }
+}
+   
+void testdrawrect(void) {
+  for (int16_t i=0; i<display.height()/2; i+=2) {
+    display.drawRect(i, i, display.width()-2*i, display.height()-2*i, WHITE);
+    display.display();
+  }
+}
+
+void testdrawline() {  
+  for (int16_t i=0; i<display.width(); i+=4) {
+    display.drawLine(0, 0, i, display.height()-1, WHITE);
+    display.display();
+  }
+  for (int16_t i=0; i<display.height(); i+=4) {
+    display.drawLine(0, 0, display.width()-1, i, WHITE);
+    display.display();
+  }
+  delay(250);
+  
+  display.clearDisplay();
+  for (int16_t i=0; i<display.width(); i+=4) {
+    display.drawLine(0, display.height()-1, i, 0, WHITE);
+    display.display();
+  }
+  for (int16_t i=display.height()-1; i>=0; i-=4) {
+    display.drawLine(0, display.height()-1, display.width()-1, i, WHITE);
+    display.display();
+  }
+  delay(250);
+  
+  display.clearDisplay();
+  for (int16_t i=display.width()-1; i>=0; i-=4) {
+    display.drawLine(display.width()-1, display.height()-1, i, 0, WHITE);
+    display.display();
+  }
+  for (int16_t i=display.height()-1; i>=0; i-=4) {
+    display.drawLine(display.width()-1, display.height()-1, 0, i, WHITE);
+    display.display();
+  }
+  delay(250);
+
+  display.clearDisplay();
+  for (int16_t i=0; i<display.height(); i+=4) {
+    display.drawLine(display.width()-1, 0, 0, i, WHITE);
+    display.display();
+  }
+  for (int16_t i=0; i<display.width(); i+=4) {
+    display.drawLine(display.width()-1, 0, i, display.height()-1, WHITE); 
+    display.display();
+  }
+  delay(250);
+}
+
+void testscrolltext(void) {
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  display.setCursor(10,0);
+  display.clearDisplay();
+  display.println("scroll");
+  display.display();
+ 
+  display.startscrollright(0x00, 0x0F);
+  delay(2000);
+  display.stopscroll();
+  delay(1000);
+  display.startscrollleft(0x00, 0x0F);
+  delay(2000);
+  display.stopscroll();
+  delay(1000);    
+  display.startscrolldiagright(0x00, 0x07);
+  delay(2000);
+  display.startscrolldiagleft(0x00, 0x07);
+  delay(2000);
+  display.stopscroll();
+}
+
+}}}
+
+
+==== Capteur Courant ====
 [[https://fr.aliexpress.com/item/Hot-Sale-New-30A-Range-ACS712-Current-Sensor-Module/32316428367.html?spm=a2g0s.9042311.0.0.uJQ96L|Ampermetre]] 30A ACS712
+{{./pasted_image001.png?width=200}}{{./pasted_image002.png?width=400}}
+
+=== Spec CS ===
+Product Description
+AC/DC current sensor module
+Features:
+Output voltage proportional to AC or DC currents
+Factory-trimmed for accuracy
+Extremely stable output offset voltage
+Nearly zero magnetic hysteresis
+Ratiometric output from supply voltage
+This is a breakout board for the fully integrated Hall Effect based linear ACS712 current sensor. The sensor gives precise current measurement for both AC and DC signals. Thick copper conductor and signal traces allows for survival of the device up to 5 times overcurrent conditions.
+
+The ACS712 outputs an analog voltage output signal that varies linearly with sensed current. The device requires 5VDC for VCC and a couple of filter capacitors. Please keep in mind that though the ACS712 is rated for 2.1kV isolation, the PCB it is on is not designed for that type of voltage. Please keep that in mind if you are using this breakout in high voltage applications.
+
+=== Code CS ===
+
+== DC Current Measuring Arduino Code ==
+{{{code: lang="c" linenumbers="True"
+void setup() {
+ 
+  Serial.begin(9600);
+}
+ 
+void loop() {
+ 
+  float average = 0;
+  for(int i = 0; i < 1000; i++) {
+    average = average + (.0264 * analogRead(A0) -13.51) / 1000;
+  
+  //5A mode, if 20A or 30A mode, need to modify this formula to 
+    //(.19 * analogRead(A0) -25) for 20A mode and 
+    //(.044 * analogRead(A0) -3.78) for 30A mode
+  
+    delay(1);
+  }
+  Serial.println(average);  
+}
+
+
+
+}}}
+
+
+== AC Current Measuring Arduino Code ==
+{{{code: lang="c" linenumbers="True"
+#define CURRENT_SENSOR A0  // Define Analog input pin that sensor is attached
+ 
+float amplitude_current;      // Float amplitude current
+float effective_value;       // Float effective current
+ 
+void setup()
+{
+    Serial.begin(9600);
+    pins_init();
+}
+void loop()
+{
+    int sensor_max;
+    sensor_max = getMaxValue();
+    Serial.print("sensor_max = ");
+    Serial.println(sensor_max);
+    
+    //the VCC on the Arduino interface of the sensor is 5v
+    
+    amplitude_current=(float)(sensor_max-512)/1024*5/185*1000000; // for 5A mode,you need to modify this with 20 A and 30A mode;
+    effective_value=amplitude_current/1.414;
+    
+    //for minimum current=1/1024*5/185*1000000/1.414=18.7(mA)
+    //Only sinusoidal alternating current
+    
+    Serial.println("The amplitude of the current is(in mA)");
+    Serial.println(amplitude_current,1);
+    
+    //Only one number after the decimal point
+    
+    Serial.println("The effective value of the current is(in mA)");
+    Serial.println(effective_value,1);
+}
+void pins_init()
+{
+    pinMode(CURRENT_SENSOR, INPUT);
+}
+/*Function: Sample for 1000ms and get the maximum value from the S pin*/
+ 
+int getMaxValue()
+{
+    int sensorValue;    //value read from the sensor
+    int sensorMax = 0;
+    uint32_t start_time = millis();
+    while((millis()-start_time) < 1000) //sample for 1000ms
+    {
+        sensorValue = analogRead(CURRENT_SENSOR);
+        if (sensorValue > sensorMax)
+        {
+            /*record the maximum sensor value*/
+            
+            sensorMax = sensorValue;
+        }
+    }
+    return sensorMax;
+}
+}}}
+
+
+
+==== Capteur pression (force) ====
 [[https://fr.aliexpress.com/item/Film-Force-Sensitive-Resistor-50N-5kg-FSR-Sensor-Module-for-Arduino-Low-Cost-Easy-to-Convert/32830267123.html?spm=a2g0s.9042311.0.0.uJQ96L|Capteur pression]] 5kg FSR
+A propos de FSR
+https://learn.adafruit.com/force-sensitive-resistor-fsr
+
+=== Code FSR ===
+{{{code: lang="c" linenumbers="True"
+/************************************************* *************************************************
+* OPEN-SMART demo code for FSR sensor module (50N / 5KG)
+* You can learnto know the pressure on the sensitive area. 
+*
+*Store: https://open-smart.aliexpress.com/store/1199788
+           dx.com
+************************************************** ************************************************** *****/
+
+#define FSR_PIN A0
+#define DIVIDER_RES 10 //the resistance of the resistor connect with the FSR resistor in series.
+// the setup routine runs once when you press reset:
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+  
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  
+  int sensorValue = analogRead(FSR_PIN);
+  float val = sensorValue;
+  float res = DIVIDER_RES*1023.00/val-DIVIDER_RES;
+  //print out the value you read:
+  Serial.println(sensorValue);
+  Serial.print(res);
+  Serial.println("KOhm");
+  judgeForce(res);
+  delay(600);        // delay in betwe en reads for stability
+}
+
+void judgeForce(float res)
+{
+  if(res > 1200) Serial.println("Nothing on the FSR");
+  else if(res > 300) Serial.println("Did you have breakfast? Your strength is too small.");
+  else if(res > 50) Serial.println("Your strength can be bigger...");
+  else if(res > 15) Serial.println("Man, your strength is big!");
+  else Serial.println("You are most strong in the world!");
+}
+}}}
+
+
+===== CODE =====
+
+> 
+dildendj
+> ccj
+> qjcodsc
+
+jf,czoz
+kc
+z
+
