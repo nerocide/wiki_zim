@@ -1,7 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2017-02-15T15:24:13+01:00
-
-====== Contrôleur de vol ======
-Created mercredi 15 février 2017
-
