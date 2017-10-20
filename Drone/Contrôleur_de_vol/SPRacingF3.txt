@@ -23,3 +23,5 @@ en console copie le contenu d'un dump et l'appliquer, puis lancer la commande "*
 
 ===== Documentation constructeur =====
 [[~/Documents/Drone/SPRacingF3-Manual-latest.pdf]]
+@drone
+@flightController

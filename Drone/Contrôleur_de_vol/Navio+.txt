@@ -5,3 +5,5 @@ Creation-Date: 2017-01-30T10:34:16+01:00
 ====== Navio+ ======
 Created lundi 30 janvier 2017
 
+@drone
+@flightController

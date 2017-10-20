@@ -26,4 +26,5 @@ Charger le programme à compiler
 Compiler et déverser sur le chip distant
 
 @drone
+@flightController
 @kkmulticopter

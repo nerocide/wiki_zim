@@ -8,3 +8,5 @@ Créée le mardi 05 septembre 2017
 {{~/Documents/Drone/omnibus-f4-v3-fc-pinout.jpg?width=600}}
 
 [[~/Documents/Drone/omnibus F4 Pro V3.pdf]]
+@drone
+@flightController
