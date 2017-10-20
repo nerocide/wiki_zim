@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-10-20T15:20:01+02:00
+
+====== HANA - Bullion ======
+Créée le vendredi 20 octobre 2017
+
+===== Identifiants de connexion =====
+ID: super
+pwd: pass
+
+
+===== Procédure d'Installation =====
+* lancer l'install depuis le CD SLES 12 SP2
+* faire une installation next next next
+* plugger le susemanager
+* faire l'upgrade system
+* installer les post-install
+* configurer le multipath
+* créer multipath.conf
