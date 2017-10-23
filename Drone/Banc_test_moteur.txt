@@ -631,12 +631,4 @@ void judgeForce(float res)
 
 ===== CODE =====
 
-> 
-dildendj
-> ccj
-> qjcodsc
-
-jf,czoz
-kc
-z
 
