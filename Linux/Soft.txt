@@ -1,7 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2017-01-12T12:40:01+01:00
-
-====== Soft ======
-Created jeudi 12 janvier 2017
-

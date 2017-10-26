@@ -1,9 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2016-03-23T10:12:27+01:00
-
-====== Nmap ======
-Created mercredi 23 mars 2016
-
-# Find available @IP in range
-nmap -v -sP 172.16.192.0/20 -oG - | awk '/Status: Down/{print $2}'

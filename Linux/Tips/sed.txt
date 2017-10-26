@@ -1,9 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2016-03-30T14:08:41+02:00
-
-====== sed ======
-Created mercredi 30 mars 2016
-
-Chercher Address dans le fichier est remplacer par ...
-sed -i -e '/#Address/ s/#AddressFamily any/AddressFamily inet/' /etc/ssh/sshd_config
