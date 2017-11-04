@@ -581,6 +581,19 @@ int getMaxValue()
 
 
 ==== Capteur pression (force) ====
+
+=== Description ===
+FSRs sont essentiellement une résistance qui change de valeur résistive (en ohms Ω) en fonction de combien il est pressé.
+le FSR est fait de 2 couches séparées par une entretoise. plus on presses, le plus de ces Élément Actif points tactile le semi-conducteur et que fait la résistance aller vers le bas.
+FSR capteur module se compose de mince film pression résistance et 10 k ohm résistance en série, plus la pression dans la zone de détection, plus la tension de sortie. même si vous le touchez le avec vos doigts, la sortie va changer et induction est très sensible.
+caractéristiques:
+-Tension De Fonctionnement VCC: 5.5 VDC (MAX)
+-Courant de fonctionnement: 1 mA (MAX)
+-Échelle de pression: 0-50N
+-temps de réponse: < 10 ms
+-Temps de récupération: < 40 ms
+-zone de détection diamètre: 9mm
+-longueur totale de la FSR résistance: 40mm
 [[https://fr.aliexpress.com/item/Film-Force-Sensitive-Resistor-50N-5kg-FSR-Sensor-Module-for-Arduino-Low-Cost-Easy-to-Convert/32830267123.html?spm=a2g0s.9042311.0.0.uJQ96L|Capteur pression]] 5kg FSR
 A propos de FSR
 https://learn.adafruit.com/force-sensitive-resistor-fsr
