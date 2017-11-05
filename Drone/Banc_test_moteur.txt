@@ -64,6 +64,7 @@ void loop()
 ==== Pack de sonde ====
 
 ==== Ecran OLED ====
+https://hackaday.io/project/10533-nano-tty/log/34525-smooth-scrolling-on-a-ssd1306
 https://projetsdiy.fr/ssd1306-mini-ecran-oled-i2c-128x64-arduino/#Comment_trouver_l8217adresse_de_l8217ecran_SSD1306_sur_le_bus_I2C
 http://www.instructables.com/id/Arduino-Nano-Simple-SSD1306-I2C-OLED-Analog-Displa/
 [[https://fr.aliexpress.com/item/Free-Shipping-0-91-Inch-128x32-IIC-I2C-Blue-OLED-LCD-Display-DIY-Oled-Module-SSD1306/32792474110.html?spm=a2g0s.9042311.0.0.uJQ96L|Ecran OLED]]
