@@ -64,6 +64,7 @@ void loop()
 ==== Pack de sonde ====
 
 ==== Ecran OLED ====
+http://www.instructables.com/id/Arduino-Nano-Simple-SSD1306-I2C-OLED-Analog-Displa/
 [[https://fr.aliexpress.com/item/Free-Shipping-0-91-Inch-128x32-IIC-I2C-Blue-OLED-LCD-Display-DIY-Oled-Module-SSD1306/32792474110.html?spm=a2g0s.9042311.0.0.uJQ96L|Ecran OLED]]
 {{./pasted_image.png?width=200}}
 0.91 Pouce 128x32 IIC I2C Bleu OLED LCD Affichage DIY Oled Module SSD1306 Pilote IC DC 3.3 V 5 V Pour Arduino PIC Chaude vente
