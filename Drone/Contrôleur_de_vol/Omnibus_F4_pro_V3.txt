@@ -5,8 +5,8 @@ Creation-Date: 2017-09-05T14:19:06+02:00
 ====== Omnibus F4 pro V3 ======
 Créée le mardi 05 septembre 2017
 
-{{~/Documents/Drone/omnibus-f4-v3-fc-pinout.jpg?width=600}}
+{{~/Documents/Drone/Flight Controller/omnibus-f4-v3-fc-pinout.jpg?width=1000}}
 
-[[~/Documents/Drone/omnibus F4 Pro V3.pdf]]
+[[~/Documents/Drone/Flight Controller/omnibus-f4-v3-fc-pinout.jpg]]
 @drone
 @flightController
