@@ -5,3 +5,5 @@ Creation-Date: 2017-11-27T13:14:43+01:00
 ====== FrSky - X4R SB ======
 Créée le lundi 27 novembre 2017
 
+Sport and Betaflight
+
