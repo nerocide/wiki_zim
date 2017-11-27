@@ -2,6 +2,6 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2017-10-20T10:47:26+02:00
 
-====== RXTX ======
+====== Radio Receiver - RX ======
 Created vendredi 20 octobre 2017
 

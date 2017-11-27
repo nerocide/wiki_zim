@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2017-11-27T13:12:58+01:00
+
+====== FrSky - Taranis QX7s ======
+Créée le lundi 27 novembre 2017
+
+
+
+====== Firmware Update ======
+
+
+
+====== Software tools ======
+Companion OpenTX 2.2.0
+
+
+====== SDCard content ======
+
+
+
+====== Script LUA ======
